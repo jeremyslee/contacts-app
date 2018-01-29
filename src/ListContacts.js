@@ -22,7 +22,7 @@ class ListContacts extends Component {
     let contactsToShow;
     if (this.state.query) {
       const regExp = new RegExp(escapeRegExp(this.state.query), 'i');
-      contactsToShow = this.props.contacts.filter(contact => contact.name.match(regExp));
+      contactsToShow = this.props.contacts.filter(contact => regExp.test(contact.name));
     } else {
       contactsToShow = this.props.contacts;
     }
