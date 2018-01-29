@@ -31,13 +31,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>Test</h1>
-        </header>
-        <div>
-          <ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts} />
-        </div>
+      <div>
+        <ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts} />
       </div>
     );
   }
