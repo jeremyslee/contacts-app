@@ -9,7 +9,12 @@ class ListContacts extends Component {
     this.state = {
       query: ''
     }
+    this.resetQuery = this.resetQuery.bind(this);
     this.updateQuery = this.updateQuery.bind(this);
+  }
+
+  resetQuery() {
+    this.setState({ query: '' });
   }
 
   updateQuery(query) {
@@ -44,6 +49,14 @@ class ListContacts extends Component {
             onChange={(event) => this.updateQuery(event.target.value)}
           />
         </div>
+
+        {contacts.length !== contactsToShow.length && (
+          <div className='showing-contacts'>
+            <span>Showing {contactsToShow.length} of {contacts.length} total</span>
+            <button onClick={this.resetQuery}>(show all)</button>
+          </div>
+        )}
+
         <ol className='contact-list'>
           {contactsToShow.map(contact => (
             <li key={contact.id} className='contact-list-item'>
