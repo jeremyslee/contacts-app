@@ -19,13 +19,18 @@ class ListContacts extends Component {
   }
 
   render() {
+    const { contacts, onDeleteContact } = this.props;
+    const { query } = this.state;
+
     let contactsToShow;
-    if (this.state.query) {
-      const regExp = new RegExp(escapeRegExp(this.state.query), 'i');
-      contactsToShow = this.props.contacts.filter(contact => regExp.test(contact.name));
+    
+    if (query) {
+      const regExp = new RegExp(escapeRegExp(query), 'i');
+      contactsToShow = contacts.filter(contact => regExp.test(contact.name));
     } else {
-      contactsToShow = this.props.contacts;
+      contactsToShow = contacts;
     }
+    
     contactsToShow.sort(sortBy('name', 'email'));
 
     return (
@@ -35,7 +40,7 @@ class ListContacts extends Component {
             className='search-contacts'
             type='text'
             placeholder='Search contacts'
-            value={this.state.query}
+            value={query}
             onChange={(event) => this.updateQuery(event.target.value)}
           />
         </div>
@@ -49,7 +54,7 @@ class ListContacts extends Component {
                 <p>{contact.name}</p>
                 <p>{contact.email}</p>
               </div>
-              <button onClick={() => this.props.onDeleteContact(contact)} className='contact-remove'>Remove</button>
+              <button onClick={() => onDeleteContact(contact)} className='contact-remove'>Remove</button>
             </li>
             ))}
         </ol>
