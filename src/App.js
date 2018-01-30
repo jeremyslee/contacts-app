@@ -21,6 +21,10 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(c => c.id !== contact.id)
     }));
+    // Later add notification popup with undo option
+    ContactsAPI.remove(contact).then(contact => {
+      console.log(`${contact.name} was deleted`);
+    });
   } 
 
   render() {
