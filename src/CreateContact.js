@@ -4,7 +4,8 @@ import ImageInput from './ImageInput';
 import serializeForm from 'form-serialize';
 
 class CreateContact extends Component {
-  handleSubmit(e) {
+  
+  handleSubmit = (e) => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true });
     console.log(values);
