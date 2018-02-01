@@ -50,7 +50,7 @@ class App extends Component {
           <CreateContact
             onCreateContact={contact => {
               this.createContact(contact);
-              history.pushState('/');
+              history.push('/');
             }}
           />
         )}/>
